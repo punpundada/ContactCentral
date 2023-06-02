@@ -15,7 +15,7 @@ const contactSchema=mongoos.Schema({
 
 },
 {
-    timestamp:true,
+    timestamps:true,
 }
 )
 

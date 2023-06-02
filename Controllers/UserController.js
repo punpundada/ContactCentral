@@ -5,18 +5,26 @@ const bcrypt = require("bcrypt")
 //route /api/users/register
 //for now access will be public
 const registerUser =asyncHandler(async (req, res)=>{
-    // const{username, email, password}=req.body;
-    // if(!username || !email || !password){
-    //     res.status(400)
-    //     throw new Error("All Fileds are mandatory");
-    // }
-    // const availableUser = await User.findOne({email});
-    // if(availableUser){
-    //     res.status(400);
-    //     throw new Error("User already registred") 
-    // }
-    // const hashedPassword = await bcrypt.hash(password,10);
-    // console.log(`the hashed password is ${hashedPassword}`)
+    const{username , email, password} = req.body;
+    if(!username || !email || !password){
+        res.status(400);
+        throw new Error("All fields are mandatory")
+    }
+    const availableUser = await User.findOne({email})
+    if(availableUser){
+        res.status(400);
+        throw new Error("User already registred");
+    }
+    const bcryptPassword =await bcrypt.hash(password , 10);
+    console.log(bcryptPassword);
+
+    const user = User.create({
+        username,
+        email,
+        password:bcryptPassword
+    }); 
+
+    console.log(`The user created by ${user}`)
     res.json({message:"Register the user"})
 })
 

@@ -7,7 +7,7 @@
 
 //desc for get all contacts
 //route /api/contacts
-//for now access will be public
+//access will be private
 const asyncHandler = require("express-async-handler");
 const Contact = require("../Models/ContactModel")
 const constants = require("../routes/Constants");
@@ -15,13 +15,13 @@ const constants = require("../routes/Constants");
 //wrap the function is this asyncHandler
 //this will do automatic try catch exception handling
 const getContacts =asyncHandler(async (req,res)=>{
-    const contacts =await Contact.find();
+    const contacts =await Contact.find({user_id:req.user.id});
     res.status(200).json(contacts)
 })
 
 //desc for get single contact
 //route /api/contacts/:id
-//for now access will be public
+//for now access will be private
 
 const getContact =asyncHandler(async (req,res)=>{
     const contact =await Contact.findById(req.params.id)
@@ -50,14 +50,15 @@ const createContact =asyncHandler(async (req, res)=>{
     const contact =await Contact.create({
         name,
         email,
-        phone
+        phone,
+        user_id :req.user.id,
     }); 
     res.status(201).json(contact)
 })
 
 //desc for update single contact
 //route /api/contacts/:id
-//for now access will be public
+//for now access will be private
 
 const updateContact =asyncHandler(async (req,res)=>{
     const contact =await Contact.findById(req.params.id)
@@ -75,7 +76,7 @@ const updateContact =asyncHandler(async (req,res)=>{
 
 //desc for delete single contact
 //route /api/contacts/:id
-//for now access will be public
+//for now access will be private
 const deleteContact =asyncHandler( async(req,res)=>{
     const contact =await Contact.findById(req.params.id)
     if(!contact){

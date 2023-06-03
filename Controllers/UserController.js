@@ -78,8 +78,9 @@ const loginUser =asyncHandler(async (req, res)=>{
 //desc to get cuttern user
 //route /api/users/current
 //private. only logind in user will get current user info
+
 const currentUser =asyncHandler(async (req, res)=>{
-    res.json({message:"Current user info"})
+    res.json(req.user)
 })
 
 module.exports={registerUser,loginUser,currentUser}

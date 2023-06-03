@@ -34,7 +34,7 @@ const getContact =asyncHandler(async (req,res)=>{
 
 //desc for post create single contact
 //route /api/contacts
-//for now access will be public
+//This route will be private 
 
 const createContact =asyncHandler(async (req, res)=>{
     console.log("The req body is : ",req.body);

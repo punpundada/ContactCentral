@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
-const {searchByName,
+const {
+    
     getContacts,
     getContact,
     createContact,
@@ -16,7 +17,7 @@ const validateToken = require("../Controllers/Middleware/validateTokenHandler")
 //It is a bit hard to read this style routing
 router.use(validateToken)
 router.route("/").get(getContacts).post(createContact)
-// router.route("/name").post(searchByName)
+
 router.route("/:id").get(getContact).delete(deleteContact).put(updateContact)
 router.route("/phone").post(seachByNumber);
 router.route("/email").post(searchByEmail)

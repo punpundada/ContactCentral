@@ -108,29 +108,6 @@ const updateContact =asyncHandler(async (req,res)=>{
     res.status(200).json(updatedContact)
 })
 
-//desc  search by name of contact
-//route /api/contacts/name
-//access will be private
-
-// const searchByName=asyncHandler(async (req, res)=>{
-   
-//     const {name} = req.body;
-//     // console.log(name)
-    
-//     const contact = await Contact.findOne({name: name})//req.params.name
-   
-//     console.log(contact)
-//     if(!contact){
-//         console.log("first if block")
-//         res.status(400).send({message:"Contact not found"})
-//     }
-//     if(contact.user._id.toString() !== req.user.id){
-//         console.log("second if block")
-//         res.status(403).send({message:"User don't have permission to access this contacts"});
-//     }
-    
-//     res.status(200).json(contact);
-// })
 
 //desc for delete single contact
 //route /api/contacts/:id

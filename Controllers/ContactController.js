@@ -122,14 +122,14 @@ const searchByName=asyncHandler(async (req, res)=>{
     console.log(contact)
     if(!contact){
         console.log("first if block")
-        res.status(400).send({message:"Contact not found"})
+        res.status(404).send({message:"I don't have that"})
     }
     if(contact.user._id.toString() !== req.user.id){
         console.log("second if block")
         res.status(403).send({message:"User don't have permission to access this contacts"});
     }
-    
-    res.status(200).json(contact);
+    // res.status(200).json(contact);
+    res.sendStatus(200).json(contact)
 })
 
 //desc for delete single contact
